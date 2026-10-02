@@ -164,6 +164,40 @@ input {
 input::placeholder {
   color: #8290a5;
 }
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+button {
+  padding: 8px 12px;
+  border: 1px solid #344055;
+  border-radius: 8px;
+  color: #c0ccdc;
+  background: #1b2533;
+  font-size: 12px;
+  cursor: pointer;
+}
+button[aria-pressed="true"] {
+  color: #10342c;
+  background: #8de4ca;
+  border-color: #8de4ca;
+}
+.empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  border: 1px dashed #344055;
+  border-radius: 10px;
+}
+.empty-state h3 {
+  margin-top: 0;
+}
+.empty-state p {
+  color: #a8b4c5;
+  font-size: 13px;
+  line-height: 1.6;
+}
 .task-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
