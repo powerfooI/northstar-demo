@@ -1,4 +1,5 @@
 export type Status = "todo" | "active" | "done";
+export type StatusFilter = Status | "all";
 
 export type Task = {
   id: string;
@@ -15,7 +16,15 @@ export const tasks: readonly Task[] = [
   { id: "N-106", title: "Document local preview", status: "done" },
 ];
 
-export function selectTasks(items: readonly Task[], query: string): Task[] {
+export function selectTasks(
+  items: readonly Task[],
+  query: string,
+  status: StatusFilter = "all",
+): Task[] {
   const normalized = query.trim().toLowerCase();
-  return items.filter((task) => task.title.toLowerCase().includes(normalized));
+  return items.filter(
+    (task) =>
+      (status === "all" || task.status === status) &&
+      task.title.toLowerCase().includes(normalized),
+  );
 }

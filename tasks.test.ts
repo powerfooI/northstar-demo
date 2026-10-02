@@ -27,3 +27,19 @@ test("title search is case insensitive and ignores surrounding spaces", () => {
   expect(selectTasks(tasks, "")).toEqual([...tasks]);
   expect(selectTasks(tasks, "unmatched task")).toEqual([]);
 });
+
+test("status filters combine with title search", () => {
+  expect(selectTasks(tasks, "", "active").map((task) => task.id)).toEqual([
+    "N-102",
+    "N-104",
+  ]);
+  expect(
+    selectTasks(tasks, "NAVIGATION", "todo").map((task) => task.id),
+  ).toEqual(["N-101"]);
+  expect(selectTasks(tasks, "navigation", "done")).toEqual([]);
+});
+
+test("clearing query and status restores every task after an empty result", () => {
+  expect(selectTasks(tasks, "unmatched task", "active")).toEqual([]);
+  expect(selectTasks(tasks, "", "all")).toEqual([...tasks]);
+});
